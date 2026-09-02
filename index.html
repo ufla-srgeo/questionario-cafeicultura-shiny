@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Técnica - Dashboard Cafeicultura</title>
+    <style>
+        :root {
+            --primary: #4A2C2A;
+            --primary-hover: #36201E;
+            --accent: #2E5A44;
+            --bg: #F9F8F6;
+            --card: #FFFFFF;
+            --text: #2C2C2C;
+            --border: #E2DDD7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--card);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-size: 1.8rem;
+        }
+
+        p.subtitle {
+            color: #666;
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        .section-title {
+            color: var(--accent);
+            font-size: 1.2rem;
+            border-left: 4px solid var(--accent);
+            padding-left: 10px;
+            margin: 30px 0 20px 0;
+        }
+
+        .question-group {
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        label.question-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        /* Escala Likert */
+        .likert-scale {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F4F2EE;
+            padding: 12px 20px;
+            border-radius: 8px;
+            max-width: 500px;
+        }
+
+        .likert-option {
+            text-align: center;
+        }
+
+        .likert-option input {
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+        }
+
+        .likert-labels {
+            display: flex;
+            justify-content: space-between;
+            max-width: 500px;
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 5px;
+            padding: 0 5px;
+        }
+
+        /* Checkboxes */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .checkbox-item input {
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Textarea e Inputs */
+        textarea, input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        button.btn-submit {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            margin-top: 20px;
+        }
+
+        button.btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        button.btn-submit:disabled {
+            background-color: #a0a0a0;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Avaliação Técnica: Aplicação Shiny Cafeicultura</h1>
+        <p class="subtitle">Questionário de usabilidade e avaliação agronômica para tomada de decisão no campo.</p>
+    </header>
+
+    <form id="evaluationForm">
+
+    <!-- SEÇÃO 0: PERFIL DO AVALIADOR -->
+<div class="section-title">Informações do Avaliador (Opcional)</div>
+
+<div class="question-group">
+    <label class="question-label" for="nome">Nome completo:</label>
+    <input type="text" id="nome" name="nome" placeholder="Seu nome (opcional)">
+</div>
+
+<div class="question-group">
+    <label class="question-label">Faixa Etária:</label>
+    <div class="likert-scale" style="max-width: 100%;">
+        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="Até 25 anos"> Até 25 anos</label>
+        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="26 a 35 anos"> 26 a 35 anos</label>
+        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="36 a 50 anos"> 36 a 50 anos</label>
+        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="Mais de 50 anos"> Mais de 50 anos</label>
+    </div>
+</div>
+
+<!-- Nível de Formação -->
+<div class="question-group">
+    <label class="question-label">Nível de Formação:</label>
+    <div class="checkbox-group">
+        <label class="checkbox-item">
+            <input type="radio" name="nivel_formacao" value="Graduação" required> Graduação
+        </label>
+        <label class="checkbox-item">
+            <input type="radio" name="nivel_formacao" value="Pós-Graduação"> Pós-Graduação (Mestrado/Doutorado/Especialização)
+        </label>
+    </div>
+</div>
+
+<!-- Curso / Área -->
+<div class="question-group">
+    <label class="question-label">Curso ou Área de Atuação:</label>
+    <div class="checkbox-group">
+        <label class="checkbox-item">
+            <input type="radio" name="curso_area" value="Agronomia" required> Agronomia
+        </label>
+        <label class="checkbox-item">
+            <input type="radio" name="curso_area" value="Engenharia Agrícola"> Engenharia Agrícola
+        </label>
+        <label class="checkbox-item">
+            <input type="radio" name="curso_area" value="Engenharia Ambiental"> Engenharia Ambiental
+        </label>
+        <label class="checkbox-item">
+            <input type="radio" name="curso_area" value="Outros"> Outros
+        </label>
+    </div>
+</div>
+
+
+        <!-- SEÇÃO 1 -->
+        <div class="section-title">1. Usabilidade e Interface (UX)</div>
+
+        <div class="question-group">
+            <label class="question-label">A navegação entre as abas (Mapa, Comparativo, Cultivar, Temporal) é intuitiva?</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="ux_navegacao" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="ux_navegacao" value="2"></div>
+                <div class="likert-option"><input type="radio" name="ux_navegacao" value="3"></div>
+                <div class="likert-option"><input type="radio" name="ux_navegacao" value="4"></div>
+                <div class="likert-option"><input type="radio" name="ux_navegacao" value="5"></div>
+            </div>
+            <div class="likert-labels">
+                <span>1 - Discordo Totalmente</span>
+                <span>5 - Concordo Totalmente</span>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <label class="question-label">A paleta de cores e o contraste facilitam a leitura dos gráficos e dados?</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="ux_cores" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="ux_cores" value="2"></div>
+                <div class="likert-option"><input type="radio" name="ux_cores" value="3"></div>
+                <div class="likert-option"><input type="radio" name="ux_cores" value="4"></div>
+                <div class="likert-option"><input type="radio" name="ux_cores" value="5"></div>
+            </div>
+            <div class="likert-labels">
+                <span>1 - Ruim</span>
+                <span>5 - Excelente</span>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 2 -->
+        <div class="section-title">2. Mapeamento Interativo (Interactive Map)</div>
+
+        <div class="question-group">
+            <label class="question-label">A simbolização dos polígonos por atributos (Área, Cultivar, Idade, etc.) auxilia na interpretação espacial?</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="map_simbologia" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="map_simbologia" value="2"></div>
+                <div class="likert-option"><input type="radio" name="map_simbologia" value="3"></div>
+                <div class="likert-option"><input type="radio" name="map_simbologia" value="4"></div>
+                <div class="likert-option"><input type="radio" name="map_simbologia" value="5"></div>
+            </div>
+            <div class="likert-labels">
+                <span>1 - Pouco Útil</span>
+                <span>5 - Muito Útil</span>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <label class="question-label">As informações nos pop-ups e no painel de inspeção do talhão são suficientes para o detalhamento?</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="map_popup" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="map_popup" value="2"></div>
+                <div class="likert-option"><input type="radio" name="map_popup" value="3"></div>
+                <div class="likert-option"><input type="radio" name="map_popup" value="4"></div>
+                <div class="likert-option"><input type="radio" name="map_popup" value="5"></div>
+            </div>
+            <div class="likert-labels">
+                <span>1 - Incompleto</span>
+                <span>5 - Completo</span>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 3 -->
+        <div class="section-title">3. Painel Comparativo e Gráficos</div>
+
+        <div class="question-group">
+            <label class="question-label">O gráfico radar no painel comparativo é claro para analisar múltiplos talhões simultaneamente?</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="radar_clareza" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="radar_clareza" value="2"></div>
+                <div class="likert-option"><input type="radio" name="radar_clareza" value="3"></div>
+                <div class="likert-option"><input type="radio" name="radar_clareza" value="4"></div>
+                <div class="likert-option"><input type="radio" name="radar_clareza" value="5"></div>
+            </div>
+            <div class="likert-labels">
+                <span>1 - Confuso / Poluído</span>
+                <span>5 - Muito Claro</span>
+            </div>
+        </div>
+
+        <div class="question-group">
+            <label class="question-label">Quais abas/recursos você utilizou com mais frequência?</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="checkbox" name="recursos" value="mapa"> Mapa Interativo</label>
+                <label class="checkbox-item"><input type="checkbox" name="recursos" value="radar"> Painel Comparativo (Radar)</label>
+                <label class="checkbox-item"><input type="checkbox" name="recursos" value="cultivar"> Análise por Cultivar</label>
+                <label class="checkbox-item"><input type="checkbox" name="recursos" value="temporal"> Evolução Temporal</label>
+            </div>
+        </div>
+
+        <!-- SEÇÃO 4 -->
+        <div class="section-title">4. Avaliação Qualitativa & Sugestões</div>
+
+        <div class="question-group">
+            <label class="question-label" for="bugs">Identificou algum erro, travamento (lag) ou comportamento inesperado?</label>
+            <textarea id="bugs" name="bugs" rows="3" placeholder="Descreva brevemente caso tenha encontrado algum problema..."></textarea>
+        </div>
+
+        <div class="question-group">
+            <label class="question-label" for="sugestoes">Que outros atributos ou dados geográficos (ex: NDVI, relevo, estimativa de produtividade) seriam úteis em versões futuras?</label>
+            <textarea id="sugestoes" name="sugestoes" rows="3" placeholder="Suas sugestões de melhoria..."></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">Enviar Avaliação</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('evaluationForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        // URL do seu Web App no Google Apps Script (UFLA)
+        const WEB_APP_URL = 'https://script.google.com/a/macros/estudante.ufla.br/s/AKfycbx5NfEP-68FSGkuMw-JS5G3uYEM-VjZBNrI7Vwo1nuPXWLZMhgOJPcCHfbwQs4rEVB_/exec';
+
+        const form = this;
+        const btnSubmit = form.querySelector('.btn-submit');
+        btnSubmit.disabled = true;
+        btnSubmit.innerText = 'Enviando avaliação...';
+
+        const formData = new FormData(form);
+        const data = {};
+
+        // Estrutura o payload JSON lidando com inputs simples e múltiplos (checkboxes)
+        formData.forEach((value, key) => {
+            if (data[key]) {
+                if (!Array.isArray(data[key])) {
+                    data[key] = [data[key]];
+                }
+                data[key].push(value);
+            } else {
+                data[key] = value;
+            }
+        });
+
+        try {
+            // Envio em modo no-cors com payload JSON puro em texto
+            await fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'text/plain;charset=utf-8'
+                },
+                body: JSON.stringify(data)
+            });
+
+            alert('Obrigado! Sua avaliação foi gravada com sucesso no Google Sheets.');
+            form.reset();
+
+        } catch (error) {
+            console.error('Erro na conexão:', error);
+            alert('Falha ao enviar a avaliação. Verifique a conexão e tente novamente.');
+        } finally {
+            btnSubmit.disabled = false;
+            btnSubmit.innerText = 'Enviar Avaliação';
+        }
+    });
+</script>
+
+</body>
+</html>
