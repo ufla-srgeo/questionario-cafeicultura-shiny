@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avaliação Técnica - Dashboard Cafeicultura</title>
+    <title>Avaliação de Usabilidade e Aceitação - Dashboard Cafeicultura</title>
     <style>
         :root {
             --primary: #4A2C2A;
@@ -25,7 +25,7 @@
         }
 
         .container {
-            max-width: 800px;
+            max-width: 850px;
             margin: 0 auto;
             background: var(--card);
             padding: 40px;
@@ -57,11 +57,12 @@
             font-size: 1.2rem;
             border-left: 4px solid var(--accent);
             padding-left: 10px;
-            margin: 30px 0 20px 0;
+            margin: 35px 0 20px 0;
+            font-weight: 700;
         }
 
         .question-group {
-            margin-bottom: 25px;
+            margin-bottom: 22px;
             padding-bottom: 15px;
             border-bottom: 1px dashed var(--border);
         }
@@ -69,18 +70,18 @@
         label.question-label {
             display: block;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
         }
 
-        /* Escala Likert */
         .likert-scale {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: #F4F2EE;
-            padding: 12px 20px;
+            padding: 10px 18px;
             border-radius: 8px;
-            max-width: 500px;
+            max-width: 550px;
         }
 
         .likert-option {
@@ -96,14 +97,13 @@
         .likert-labels {
             display: flex;
             justify-content: space-between;
-            max-width: 500px;
+            max-width: 550px;
             font-size: 0.8rem;
             color: #777;
             margin-top: 5px;
             padding: 0 5px;
         }
 
-        /* Checkboxes */
         .checkbox-group {
             display: flex;
             flex-direction: column;
@@ -117,12 +117,6 @@
             cursor: pointer;
         }
 
-        .checkbox-item input {
-            width: 16px;
-            height: 16px;
-        }
-
-        /* Textarea e Inputs */
         textarea, input[type="text"] {
             width: 100%;
             padding: 10px;
@@ -148,7 +142,7 @@
             cursor: pointer;
             width: 100%;
             transition: background 0.2s;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         button.btn-submit:hover {
@@ -165,134 +159,262 @@
 
 <div class="container">
     <header>
-        <h1>Avaliação Técnica: Aplicação Shiny Cafeicultura</h1>
-        <p class="subtitle">Questionário de usabilidade e avaliação agronômica para tomada de decisão no campo.</p>
+        <h1>Avaliação de Usabilidade e Aceitação Técnica</h1>
+        <p class="subtitle">Aplicação Web para Gestão Espacial da Cafeicultura (UFLA)</p>
     </header>
 
     <form id="evaluationForm">
 
-    <!-- SEÇÃO 0: PERFIL DO AVALIADOR -->
-<div class="section-title">Informações do Avaliador (Opcional)</div>
-
-<div class="question-group">
-    <label class="question-label" for="nome">Nome completo:</label>
-    <input type="text" id="nome" name="nome" placeholder="Seu nome (opcional)">
-</div>
-
-<div class="question-group">
-    <label class="question-label">Faixa Etária:</label>
-    <div class="likert-scale" style="max-width: 100%;">
-        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="Até 25 anos"> Até 25 anos</label>
-        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="26 a 35 anos"> 26 a 35 anos</label>
-        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="36 a 50 anos"> 36 a 50 anos</label>
-        <label class="checkbox-item"><input type="radio" name="faixa_etaria" value="Mais de 50 anos"> Mais de 50 anos</label>
-    </div>
-</div>
-
-<!-- Nível de Formação -->
-<div class="question-group">
-    <label class="question-label">Nível de Formação:</label>
-    <div class="checkbox-group">
-        <label class="checkbox-item">
-            <input type="radio" name="nivel_formacao" value="Graduação" required> Graduação
-        </label>
-        <label class="checkbox-item">
-            <input type="radio" name="nivel_formacao" value="Pós-Graduação"> Pós-Graduação (Mestrado/Doutorado/Especialização)
-        </label>
-    </div>
-</div>
-
-<!-- Curso / Área -->
-<div class="question-group">
-    <label class="question-label">Curso ou Área de Atuação:</label>
-    <div class="checkbox-group">
-        <label class="checkbox-item">
-            <input type="radio" name="curso_area" value="Agronomia" required> Agronomia
-        </label>
-        <label class="checkbox-item">
-            <input type="radio" name="curso_area" value="Engenharia Agrícola"> Engenharia Agrícola
-        </label>
-        <label class="checkbox-item">
-            <input type="radio" name="curso_area" value="Engenharia Ambiental"> Engenharia Ambiental
-        </label>
-        <label class="checkbox-item">
-            <input type="radio" name="curso_area" value="Outros"> Outros
-        </label>
-    </div>
-</div>
-
-
-        <!-- SEÇÃO 1 -->
-        <div class="section-title">1. Usabilidade e Interface (UX)</div>
+        <!-- BLOCO 1: PERFIL DO AVALIADOR -->
+        <div class="section-title">Bloco 1: Perfil do Avaliador</div>
 
         <div class="question-group">
-            <label class="question-label">A navegação entre as abas (Mapa, Comparativo, Cultivar, Temporal) é intuitiva?</label>
-            <div class="likert-scale">
-                <div class="likert-option"><input type="radio" name="ux_navegacao" value="1" required></div>
-                <div class="likert-option"><input type="radio" name="ux_navegacao" value="2"></div>
-                <div class="likert-option"><input type="radio" name="ux_navegacao" value="3"></div>
-                <div class="likert-option"><input type="radio" name="ux_navegacao" value="4"></div>
-                <div class="likert-option"><input type="radio" name="ux_navegacao" value="5"></div>
-            </div>
-            <div class="likert-labels">
-                <span>1 - Discordo Totalmente</span>
-                <span>5 - Concordo Totalmente</span>
+            <label class="question-label" for="nome">Nome completo (opcional):</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome">
+        </div>
+
+        <div class="question-group">
+            <label class="question-label">Curso / Programa de Pós-Graduação:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="radio" name="curso_area" value="Agronomia" required> Agronomia</label>
+                <label class="checkbox-item"><input type="radio" name="curso_area" value="Engenharia Agrícola"> Engenharia Agrícola</label>
+                <label class="checkbox-item"><input type="radio" name="curso_area" value="Ciência da Computação"> Ciência da Computação / Computação Aplicada</label>
+                <label class="checkbox-item"><input type="radio" name="curso_area" value="Outros"> Outros</label>
             </div>
         </div>
 
         <div class="question-group">
-            <label class="question-label">A paleta de cores e o contraste facilitam a leitura dos gráficos e dados?</label>
-            <div class="likert-scale">
-                <div class="likert-option"><input type="radio" name="ux_cores" value="1" required></div>
-                <div class="likert-option"><input type="radio" name="ux_cores" value="2"></div>
-                <div class="likert-option"><input type="radio" name="ux_cores" value="3"></div>
-                <div class="likert-option"><input type="radio" name="ux_cores" value="4"></div>
-                <div class="likert-option"><input type="radio" name="ux_cores" value="5"></div>
-            </div>
-            <div class="likert-labels">
-                <span>1 - Ruim</span>
-                <span>5 - Excelente</span>
+            <label class="question-label">Experiência prévia com Sistemas de Informação Geográfica (SIG / QGIS / ArcGIS) ou pacotes espaciais no R:</label>
+            <div class="checkbox-group">
+                <label class="checkbox-item"><input type="radio" name="exp_sig" value="Nenhuma" required> Nenhuma experiência</label>
+                <label class="checkbox-item"><input type="radio" name="exp_sig" value="Básica"> Básica (Uso eventual em disciplinas)</label>
+                <label class="checkbox-item"><input type="radio" name="exp_sig" value="Intermediária"> Intermediária (Realizo análises e mapas)</label>
+                <label class="checkbox-item"><input type="radio" name="exp_sig" value="Avançada"> Avançada (Desenvolvo scripts / rotinas de geoprocessamento)</label>
             </div>
         </div>
 
-        <!-- SEÇÃO 2 -->
-        <div class="section-title">2. Mapeamento Interativo (Interactive Map)</div>
+        <!-- BLOCO 2: SYSTEM USABILITY SCALE (SUS) -->
+        <div class="section-title">Bloco 2: Escala de Usabilidade do Sistema (SUS)</div>
+        <p style="font-size: 0.88rem; color: #555;">Indique seu grau de concordância com as afirmativas abaixo (1 = Discordo Totalmente, 5 = Concordo Totalmente):</p>
 
+        <!-- SUS 1 -->
         <div class="question-group">
-            <label class="question-label">A simbolização dos polígonos por atributos (Área, Cultivar, Idade, etc.) auxilia na interpretação espacial?</label>
+            <label class="question-label">1. Eu acho que gostaria de usar esta aplicação com frequência para consultar dados de lavouras.</label>
             <div class="likert-scale">
-                <div class="likert-option"><input type="radio" name="map_simbologia" value="1" required></div>
-                <div class="likert-option"><input type="radio" name="map_simbologia" value="2"></div>
-                <div class="likert-option"><input type="radio" name="map_simbologia" value="3"></div>
-                <div class="likert-option"><input type="radio" name="map_simbologia" value="4"></div>
-                <div class="likert-option"><input type="radio" name="map_simbologia" value="5"></div>
+                <div class="likert-option"><input type="radio" name="sus_1" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_1" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_1" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_1" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_1" value="5"></div>
             </div>
-            <div class="likert-labels">
-                <span>1 - Pouco Útil</span>
-                <span>5 - Muito Útil</span>
-            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
         </div>
 
+        <!-- SUS 2 -->
         <div class="question-group">
-            <label class="question-label">As informações nos pop-ups e no painel de inspeção do talhão são suficientes para o detalhamento?</label>
+            <label class="question-label">2. Eu achei a aplicação desnecessariamente complexa.</label>
             <div class="likert-scale">
-                <div class="likert-option"><input type="radio" name="map_popup" value="1" required></div>
-                <div class="likert-option"><input type="radio" name="map_popup" value="2"></div>
-                <div class="likert-option"><input type="radio" name="map_popup" value="3"></div>
-                <div class="likert-option"><input type="radio" name="map_popup" value="4"></div>
-                <div class="likert-option"><input type="radio" name="map_popup" value="5"></div>
+                <div class="likert-option"><input type="radio" name="sus_2" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_2" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_2" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_2" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_2" value="5"></div>
             </div>
-            <div class="likert-labels">
-                <span>1 - Incompleto</span>
-                <span>5 - Completo</span>
-            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
         </div>
 
-        <!-- SEÇÃO 3 -->
-        <div class="section-title">3. Painel Comparativo e Gráficos</div>
+        <!-- SUS 3 -->
+        <div class="question-group">
+            <label class="question-label">3. Eu achei a aplicação fácil de usar.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_3" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_3" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_3" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_3" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_3" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- SUS 4 -->
+        <div class="question-group">
+            <label class="question-label">4. Eu acho que precisaria do suporte de um técnico para conseguir usar esta aplicação.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_4" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_4" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_4" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_4" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_4" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- SUS 5 -->
+        <div class="question-group">
+            <label class="question-label">5. Eu achei que as várias funções da aplicação estavam bem integradas.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_5" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_5" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_5" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_5" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_5" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- SUS 6 -->
+        <div class="question-group">
+            <label class="question-label">6. Eu achei que havia muita inconsistência nesta aplicação.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_6" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_6" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_6" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_6" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_6" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- SUS 7 -->
+        <div class="question-group">
+            <label class="question-label">7. Eu imagino que a maioria das pessoas aprenderia a usar esta aplicação muito rápido.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_7" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_7" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_7" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_7" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_7" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- SUS 8 -->
+        <div class="question-group">
+            <label class="question-label">8. Eu achei a aplicação muito pesada ou complicada de operar.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_8" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_8" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_8" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_8" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_8" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- SUS 9 -->
+        <div class="question-group">
+            <label class="question-label">9. Eu me senti muito confiante ao navegar na aplicação.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_9" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_9" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_9" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_9" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_9" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- SUS 10 -->
+        <div class="question-group">
+            <label class="question-label">10. Eu precisei aprender muitas coisas novas antes de conseguir usar a aplicação.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="sus_10" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="sus_10" value="2"></div>
+                <div class="likert-option"><input type="radio" name="sus_10" value="3"></div>
+                <div class="likert-option"><input type="radio" name="sus_10" value="4"></div>
+                <div class="likert-option"><input type="radio" name="sus_10" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+
+        <!-- BLOCO 3: MODELO DE ACEITAÇÃO TECNOLÓGICA (TAM) -->
+        <div class="section-title">Bloco 3: Modelo de Aceitação Tecnológica (TAM)</div>
+
+        <!-- TAM - PU 1 -->
+        <div class="question-group">
+            <label class="question-label">1. (Utilidade Percebida) A ferramenta torna a consulta a dados espaciais de lavouras de café mais rápida e prática do que em mapas estáticos ou planilhas.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="tam_pu1" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="tam_pu1" value="2"></div>
+                <div class="likert-option"><input type="radio" name="tam_pu1" value="3"></div>
+                <div class="likert-option"><input type="radio" name="tam_pu1" value="4"></div>
+                <div class="likert-option"><input type="radio" name="tam_pu1" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- TAM - PU 2 -->
+        <div class="question-group">
+            <label class="question-label">2. (Utilidade Percebida) O uso desta aplicação seria útil para apoiar o planejamento e a gestão agronômica de fazendas de café.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="tam_pu2" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="tam_pu2" value="2"></div>
+                <div class="likert-option"><input type="radio" name="tam_pu2" value="3"></div>
+                <div class="likert-option"><input type="radio" name="tam_pu2" value="4"></div>
+                <div class="likert-option"><input type="radio" name="tam_pu2" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- TAM - PEOU 1 -->
+        <div class="question-group">
+            <label class="question-label">3. (Facilidade de Uso) A navegação entre as abas (Mapa, Comparativo, Cultivar, Temporal) é clara e intuitiva.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="tam_peou1" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="tam_peou1" value="2"></div>
+                <div class="likert-option"><input type="radio" name="tam_peou1" value="3"></div>
+                <div class="likert-option"><input type="radio" name="tam_peou1" value="4"></div>
+                <div class="likert-option"><input type="radio" name="tam_peou1" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- TAM - PEOU 2 -->
+        <div class="question-group">
+            <label class="question-label">4. (Facilidade de Uso) Aprender a operar as funções da aplicação exigiu pouco esforço cognitivo.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="tam_peou2" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="tam_peou2" value="2"></div>
+                <div class="likert-option"><input type="radio" name="tam_peou2" value="3"></div>
+                <div class="likert-option"><input type="radio" name="tam_peou2" value="4"></div>
+                <div class="likert-option"><input type="radio" name="tam_peou2" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- TAM - BI 1 -->
+        <div class="question-group">
+            <label class="question-label">5. (Intenção de Uso) Eu pretendia/gostaria de utilizar uma ferramenta similar em minhas futuras atividades acadêmicas ou profissionais.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="tam_bi1" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="tam_bi1" value="2"></div>
+                <div class="likert-option"><input type="radio" name="tam_bi1" value="3"></div>
+                <div class="likert-option"><input type="radio" name="tam_bi1" value="4"></div>
+                <div class="likert-option"><input type="radio" name="tam_bi1" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+        <!-- TAM - BI 2 -->
+        <div class="question-group">
+            <label class="question-label">6. (Intenção de Uso) Eu recomendaria este sistema para produtores de café, técnicos agrícolas ou consultores sem treinamento prévio em SIG.</label>
+            <div class="likert-scale">
+                <div class="likert-option"><input type="radio" name="tam_bi2" value="1" required></div>
+                <div class="likert-option"><input type="radio" name="tam_bi2" value="2"></div>
+                <div class="likert-option"><input type="radio" name="tam_bi2" value="3"></div>
+                <div class="likert-option"><input type="radio" name="tam_bi2" value="4"></div>
+                <div class="likert-option"><input type="radio" name="tam_bi2" value="5"></div>
+            </div>
+            <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
+        </div>
+
+
+        <!-- BLOCO 4: AVALIAÇÃO QUALITATIVA & RECURSOS -->
+        <div class="section-title">Bloco 4: Recursos do Dashboard & Sugestões</div>
 
         <div class="question-group">
-            <label class="question-label">O gráfico radar no painel comparativo é claro para analisar múltiplos talhões simultaneamente?</label>
+            <label class="question-label">O gráfico radar no Painel Comparativo permitiu analisar e diferenciar múltiplos talhões de forma clara?</label>
             <div class="likert-scale">
                 <div class="likert-option"><input type="radio" name="radar_clareza" value="1" required></div>
                 <div class="likert-option"><input type="radio" name="radar_clareza" value="2"></div>
@@ -300,32 +422,16 @@
                 <div class="likert-option"><input type="radio" name="radar_clareza" value="4"></div>
                 <div class="likert-option"><input type="radio" name="radar_clareza" value="5"></div>
             </div>
-            <div class="likert-labels">
-                <span>1 - Confuso / Poluído</span>
-                <span>5 - Muito Claro</span>
-            </div>
+            <div class="likert-labels"><span>1 - Muito Confuso</span><span>5 - Muito Claro</span></div>
         </div>
 
         <div class="question-group">
-            <label class="question-label">Quais abas/recursos você utilizou com mais frequência?</label>
-            <div class="checkbox-group">
-                <label class="checkbox-item"><input type="checkbox" name="recursos" value="mapa"> Mapa Interativo</label>
-                <label class="checkbox-item"><input type="checkbox" name="recursos" value="radar"> Painel Comparativo (Radar)</label>
-                <label class="checkbox-item"><input type="checkbox" name="recursos" value="cultivar"> Análise por Cultivar</label>
-                <label class="checkbox-item"><input type="checkbox" name="recursos" value="temporal"> Evolução Temporal</label>
-            </div>
-        </div>
-
-        <!-- SEÇÃO 4 -->
-        <div class="section-title">4. Avaliação Qualitativa & Sugestões</div>
-
-        <div class="question-group">
-            <label class="question-label" for="bugs">Identificou algum erro, travamento (lag) ou comportamento inesperado?</label>
+            <label class="question-label" for="bugs">Identificou algum erro, lentidão (lag) ou comportamento inesperado durante a realização das tarefas?</label>
             <textarea id="bugs" name="bugs" rows="3" placeholder="Descreva brevemente caso tenha encontrado algum problema..."></textarea>
         </div>
 
         <div class="question-group">
-            <label class="question-label" for="sugestoes">Que outros atributos ou dados geográficos (ex: NDVI, relevo, estimativa de produtividade) seriam úteis em versões futuras?</label>
+            <label class="question-label" for="sugestoes">Que outros atributos ou dados geográficos (ex: NDVI, relevo, estimativa de produtividade) seriam mais úteis em versões futuras?</label>
             <textarea id="sugestoes" name="sugestoes" rows="3" placeholder="Suas sugestões de melhoria..."></textarea>
         </div>
 
@@ -337,7 +443,6 @@
     document.getElementById('evaluationForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
-        // URL do seu Web App no Google Apps Script (UFLA)
         const WEB_APP_URL = 'https://script.google.com/a/macros/estudante.ufla.br/s/AKfycbx5NfEP-68FSGkuMw-JS5G3uYEM-VjZBNrI7Vwo1nuPXWLZMhgOJPcCHfbwQs4rEVB_/exec';
 
         const form = this;
@@ -348,7 +453,6 @@
         const formData = new FormData(form);
         const data = {};
 
-        // Estrutura o payload JSON lidando com inputs simples e múltiplos (checkboxes)
         formData.forEach((value, key) => {
             if (data[key]) {
                 if (!Array.isArray(data[key])) {
@@ -361,7 +465,6 @@
         });
 
         try {
-            // Envio em modo no-cors com payload JSON puro em texto
             await fetch(WEB_APP_URL, {
                 method: 'POST',
                 mode: 'no-cors',
