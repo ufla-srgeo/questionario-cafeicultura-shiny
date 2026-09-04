@@ -8,6 +8,8 @@ Este repositório contém a interface web responsiva para a coleta de dados e av
 
 O objetivo principal desta pesquisa é mensurar a experiência do usuário (UX), a clareza da comunicação cartográfica e a aplicabilidade agronômica da ferramenta na gestão de talhões cafeeiros.
 
+👉 **[https://srgeo.shinyapps.io/open-source-coffee-mapping/](https://srgeo.shinyapps.io/open-source-coffee-mapping/)**
+
 ---
 
 ## 📋 Sobre a Pesquisa
