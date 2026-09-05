@@ -153,6 +153,70 @@
             background-color: #a0a0a0;
             cursor: not-allowed;
         }
+
+        /* Estilos do Modal de Confirmação */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 1000;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-card {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 450px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .modal-card h3 {
+            color: var(--accent);
+            margin-top: 0;
+            font-size: 1.4rem;
+        }
+
+        .modal-card p {
+            color: #555;
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .btn-modal-close {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-modal-close:hover {
+            background-color: var(--primary-hover);
+        }
     </style>
 </head>
 <body>
@@ -178,7 +242,7 @@
             <div class="checkbox-group">
                 <label class="checkbox-item"><input type="radio" name="curso_area" value="Agronomia" required> Agronomia</label>
                 <label class="checkbox-item"><input type="radio" name="curso_area" value="Engenharia Agrícola"> Engenharia Agrícola</label>
-                <label class="checkbox-item"><input type="radio" name="curso_area" value="Ciência da Computação"> Engenharia Ambiental</label>
+                <label class="checkbox-item"><input type="radio" name="curso_area" value="Engenharia Ambiental"> Engenharia Ambiental</label>
                 <label class="checkbox-item"><input type="radio" name="curso_area" value="Outros"> Outros</label>
             </div>
         </div>
@@ -327,7 +391,6 @@
             <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
         </div>
 
-
         <!-- BLOCO 3: MODELO DE ACEITAÇÃO TECNOLÓGICA (TAM) -->
         <div class="section-title">Bloco 3: Modelo de Aceitação Tecnológica (TAM)</div>
 
@@ -409,7 +472,6 @@
             <div class="likert-labels"><span>1 - Discordo Totalmente</span><span>5 - Concordo Totalmente</span></div>
         </div>
 
-
         <!-- BLOCO 4: AVALIAÇÃO QUALITATIVA & RECURSOS -->
         <div class="section-title">Bloco 4: Recursos do Dashboard & Sugestões</div>
 
@@ -437,6 +499,15 @@
 
         <button type="submit" class="btn-submit">Enviar Avaliação</button>
     </form>
+</div>
+
+<!-- Modal de Sucesso Customizado -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-card">
+        <h3>Avaliação Enviada!</h3>
+        <p>Obrigado pela sua colaboração. Suas respostas foram salvas no banco de dados da pesquisa com sucesso.</p>
+        <button class="btn-modal-close" onclick="closeModal()">Fechar</button>
+    </div>
 </div>
 
 <script>
@@ -474,17 +545,23 @@
                 body: JSON.stringify(data)
             });
 
-            alert('Obrigado! Sua avaliação foi gravada com sucesso no Google Sheets.');
+            // Mostra o Modal Personalizado de Sucesso
+            document.getElementById('successModal').classList.add('active');
             form.reset();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
 
         } catch (error) {
             console.error('Erro na conexão:', error);
-            alert('Falha ao enviar a avaliação. Verifique a conexão e tente novamente.');
+            alert('Falha ao enviar a avaliação. Verifique a conexão com a internet e tente novamente.');
         } finally {
             btnSubmit.disabled = false;
             btnSubmit.innerText = 'Enviar Avaliação';
         }
     });
+
+    function closeModal() {
+        document.getElementById('successModal').classList.remove('active');
+    }
 </script>
 
 </body>
