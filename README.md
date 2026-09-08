@@ -37,6 +37,7 @@ A estrutura de coleta de dados foi projetada para ser leve, assíncrona e acess�
 ## 🔗 Acesse o Formulário de Avaliação
 
 Acesse a pesquisa de usabilidade diretamente pelo link oficial do projeto:
+
 👉 **[https://ufla-srgeo.github.io/questionario-cafeicultura-shiny/](https://ufla-srgeo.github.io/questionario-cafeicultura-shiny/)**
 
 ---
