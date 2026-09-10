@@ -9,26 +9,29 @@ function doPost(e) {
       sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
     }
     
-    // 3. Se a planilha estiver vazia, cria o cabeçalho
+    // 3. Se a planilha estiver vazia, cria o CABEÇALHO NOVO (com 14 colunas)
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         "Data/Hora", 
         "Nome",
         "Curso / Área",
         "Exp. SIG/R",
-        "SUS_1", "SUS_2", "SUS_3", "SUS_4", "SUS_5",
-        "SUS_6", "SUS_7", "SUS_8", "SUS_9", "SUS_10",
-        "TAM_PU1", "TAM_PU2",
-        "TAM_PEOU1", "TAM_PEOU2",
-        "TAM_BI1", "TAM_BI2",
+        "Q1 - Rápida/Prática (Utilidade)",
+        "Q2 - Útil Gestão (Utilidade)",
+        "Q3 - Navegação Intuitiva (Facilidade)",
+        "Q4 - Pouco Esforço (Facilidade)",
+        "Q5 - Usaria no Futuro (Intenção)",
+        "Q6 - Recomendaria (Intenção)",
+        "Q7 - Confiança (SUS adaptado)",
         "Radar Clareza",
         "Bugs/Travamentos",
         "Sugestões Atributos"
       ]);
-      sheet.getRange(1, 1, 1, 23).setFontWeight("bold");
+      // Aplica negrito no cabeçalho (14 colunas)
+      sheet.getRange(1, 1, 1, 14).setFontWeight("bold");
     }
     
-    // 4. Pega os valores e salva na planilha
+    // 4. Pega os valores enviados pelo HTML e monta a linha
     var dataHora = new Date();
     
     var linha = [
@@ -36,11 +39,13 @@ function doPost(e) {
       dados.nome || "",                              // Nome
       dados.curso_area || "",                        // Curso / Área
       dados.exp_sig || "",                           // Exp. SIG/R
-      dados.sus_1 || "", dados.sus_2 || "", dados.sus_3 || "", dados.sus_4 || "", dados.sus_5 || "",
-      dados.sus_6 || "", dados.sus_7 || "", dados.sus_8 || "", dados.sus_9 || "", dados.sus_10 || "",
-      dados.tam_pu1 || "", dados.tam_pu2 || "",      // TAM PU
-      dados.tam_peou1 || "", dados.tam_peou2 || "",  // TAM PEOU
-      dados.tam_bi1 || "", dados.tam_bi2 || "",      // TAM BI
+      dados.unified_1 || "",                         // Q1
+      dados.unified_2 || "",                         // Q2
+      dados.unified_3 || "",                         // Q3
+      dados.unified_4 || "",                         // Q4
+      dados.unified_5 || "",                         // Q5
+      dados.unified_6 || "",                         // Q6
+      dados.unified_7 || "",                         // Q7
       dados.radar_clareza || "",                     // Radar
       dados.bugs || "",                              // Bugs
       dados.sugestoes || ""                          // Sugestões
@@ -48,14 +53,14 @@ function doPost(e) {
     
     sheet.appendRow(linha);
     
-    // 5. Retorna uma resposta de sucesso (opcional, mas ajuda a depurar)
+    // 5. Retorna uma resposta de sucesso
     return ContentService.createTextOutput(JSON.stringify({
       status: "sucesso",
       mensagem: "Dados salvos com sucesso!"
     })).setMimeType(ContentService.MimeType.JSON);
     
   } catch (erro) {
-    // 6. Em caso de erro, retorna a mensagem para ajudar na depuração
+    // 6. Em caso de erro, retorna a mensagem para depuração
     Logger.log("Erro: " + erro.toString());
     return ContentService.createTextOutput(JSON.stringify({
       status: "erro",
